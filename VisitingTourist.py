@@ -30,10 +30,10 @@ class VisitingTourist(Player):
 
         # Store first card into the firstHand attribute and the second card into the secondHand attribute. Then add a card to each of the hands to represent the two newly
         # made hands from splitting the first two cards dealt. Return the two hands.
-        self.firstHand = playerHand[0]
-        self.secondHand = playerHand[1]
-        VisitingTourist.addCard(VisitingTourist, self.firstHand, deck)
-        VisitingTourist.addCard(VisitingTourist, self.secondHand, deck)
+        self.firstHand.append(playerHand[0])
+        self.secondHand.append(playerHand[1])
+        self.addCard(self.firstHand, deck)
+        self.addCard(self.secondHand, deck)
         return self.firstHand, self.secondHand
 
     # splitStand method deals with the many different print statements sent to the User when they split their hand.

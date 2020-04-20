@@ -9,11 +9,11 @@ class Player:
     # Initialize any Player object with an empty array for their hand and a starting score of 0.
     def __init__(self):
 
-        self.playerHand = []
-        self.playerScore = 0
+        self._playerHand = []
+        self._playerScore = 0
 
     # getCards method is used to add cards to the Player's hand in the case of a split.
-    def getCards(self, playerHand, deck):
+    def _getCards(self, playerHand, deck):
 
         # Pop a card off of the deck from the Dealer object, then add it to the Player's hand.
         for i in range(2):
@@ -25,7 +25,7 @@ class Player:
                 playerHand.append(temp)
 
     # calculateScore method is used to go through the Player's hand and total up the numberical values of each card.
-    def calculateScore(self, playerHand):
+    def _calculateScore(self, playerHand):
 
         # Player starts with a score of 0.
         total = 0
@@ -41,15 +41,16 @@ class Player:
             total += val
 
         # If the Player has an A in their hand and their score is above 10, remove 10 off of their score.
-        if 'A' in playerHand:
+        print(total)
+        if 'A' in playerHand and total != 21:
             if total <= 10:
                 total += 10
 
-        self.playerScore = total
-        return self.playerScore
+        self._playerScore = total
+        return self._playerScore
 
     # hit method is used to add a card to the Player's hand and send a message to the player that they did so.
-    def hit(self, playerHand, deck):
+    def _hit(self, playerHand, deck):
 
         # Pop a card off of the deck from the Dealer obejct and add it to the Player's hand.
         temp = deck.pop()
@@ -61,4 +62,4 @@ class Player:
 
         # Print message to User saying which card was added to their hand and the new score of their hand.
         print("The " + type(self).__name__ + " hit and got a " +
-              str(card) + " for a total of " + str(self.calculateScore(playerHand)) + ".\n")
+              str(card) + " for a total of " + str(self._calculateScore(playerHand)) + ".\n")
